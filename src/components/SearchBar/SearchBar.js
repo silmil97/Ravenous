@@ -3,7 +3,7 @@ import './SearchBar.css';
 
 
 
-class SearchbBar extends React.Component {
+class SearchBar extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
@@ -11,8 +11,10 @@ class SearchbBar extends React.Component {
             location:'', 
             sortBy:'best_match' 
         };
-        this.handleTermChange.bind(this)
-        this.handleLocationChange.bind(this)
+        
+        this.handleTermChange = this.handleTermChange.bind(this);
+        this.handleLocationChange = this.handleLocationChange.bind(this);
+        this.handleSearch = this.handleSearch.bind(this);
         this.sortByOptions = {
             'Best Match': 'best_match',
             'Highest Rated': 'rating',
@@ -33,14 +35,17 @@ class SearchbBar extends React.Component {
     }
 
     handleTermChange(event) {
-        this.setState({term: event.target.value})
+        this.setState({term: event.target.value});
     }
 
     handleLocationChange(event) {
-        this.setState({location: event.target.value})
+        this.setState({location: event.target.value});
     }
 
-    handleSearch(){}
+    handleSearch(event) {
+        this.props.searchYelp(this.state.term, this.state.location, this.state.sortBy);
+        event.preventDefault();
+    }
 
     renderSortByOptions() {
         return Object.keys(this.sortByOptions).map(sortByOption => {
@@ -58,10 +63,10 @@ class SearchbBar extends React.Component {
                     </ul>
                 </div>
                 <div className="SearchBar-fields">
-                    <input onchange={this.handleTermChange} placeholder="Search Businesses" />
-                    <input onchange={this.handleLocationChange} placeholder="Where?" />
+                    <input onChange={this.handleTermChange} placeholder="Search Businesses" />
+                    <input onChange={this.handleLocationChange} placeholder="Where?" />
                 </div>
-                <div className="SearchBar-submit">
+                <div className="SearchBar-submit" onClick={this.handleSearch}>
                     <a>Let's Go</a>
                 </div>
             </div>
@@ -69,4 +74,4 @@ class SearchbBar extends React.Component {
     }
 }
 
-export default SearchbBar;
+export default SearchBar;
