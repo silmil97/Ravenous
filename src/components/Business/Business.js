@@ -1,17 +1,6 @@
 import React from 'react';
 import './Business.css';
 
-const business = {
-    imageSrc: 'https://content.codecademy.com/programs/react/ravenous/pizza.jpg',
-    name: 'MarginOtto Pizzeria',
-    address: '1010 Paddington Way',
-    city: 'Flavortown',
-    state: 'NY',
-    zipCode: '10101',
-    category: 'Italian',
-    rating: 4.5,
-    reviewCount:90
-};
 
 class Business extends React.Component {
     render() {
@@ -28,7 +17,7 @@ class Business extends React.Component {
                         <p>{this.props.business.zipCOde}</p>
                     </div>
                     <div className="Business-reviews">
-                        <h3>{this.props.business.category}</h3>
+                        <h3>{this.props.business.category.title}</h3>
                         <h3 className="rating">{this.props.business.rating}</h3>
                         <p>{this.props.business.reviewCount}</p>
                     </div>
